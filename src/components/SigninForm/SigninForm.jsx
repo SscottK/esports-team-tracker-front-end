@@ -29,10 +29,7 @@ const SigninForm = (props) => {
 
     const {username, password } = formData
 
-    const isFormValid = () => {
-        return !(username && password && password === passwordConf);
-        
-    }
+    
 
     return (
         <main>

@@ -15,8 +15,8 @@ const signup = async (formData) => {
             const user = JSON.parse(atob(json.token.split('.')[1]))
             return user
         }
-        if (json.err) {
-            throw new Error(json.err)
+        if (json.error) {
+            throw new Error(json.error)
         }
         return json;
     } catch (error) {
@@ -31,6 +31,7 @@ const signin = async (user) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)
         });
+        
         const json = await res.json();
         if (json.err) {
             throw new Error(json.err)
@@ -41,6 +42,9 @@ const signin = async (user) => {
             const user = JSON.parse(atob(json.token.split('.')[1]))
             return user
         }
+        if (json.error) {
+            throw new Error(json.error)
+          }
     } catch (error) {
         throw error
     }
@@ -53,6 +57,27 @@ const getUser = () => {
     return user
 };
 
+const getUserData = async (userProp) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(`${BACKEND_URL}/users/${userProp._id}`, {
+            method: 'GET',
+            headers: {                
+                'Authorization': `Bearer ${token}`
+            }
+
+        })
+        const json = await res.json()
+        const user = json.user
+        
+        return user
+        
+    } catch (error) {
+        throw error
+    }
+
+}
+
 const signOut = () => {
     localStorage.removeItem('token')
 }
@@ -62,5 +87,6 @@ export {
     signup,
     signin,
     getUser,
-    signOut
+    signOut,
+    getUserData,
 };

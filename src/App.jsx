@@ -6,9 +6,11 @@ import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
 import * as authServic from '../src/services/authServices'
+import BottomNav from './components/NavBar/BottomNav';
+
 
 const App = () => {
-  const [user, setUser] = useState(authServic.getUser)
+  const [user, setUser] = useState(authServic.getUser())
 
   const handleSignout = () => {
     authServic.signOut()
@@ -27,6 +29,7 @@ const App = () => {
         <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
         <Route path="/signin" element={<SigninForm setUser={setUser} />} />
       </Routes>
+      <BottomNav user={user} />
     </>
   )
 }
