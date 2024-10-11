@@ -1,27 +1,32 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as authService from '../../services/authServices'
+import { Link } from 'react-router-dom'
 
 
-const Teams = ( { user }) => {
-    const [preparedData, setPreparedData] = useState(null)
-    const prepareUserData = async () => {
-        const userData = await authService.getUserData(user)
-        
-        setPreparedData(userData)
-        
-        
-    }
-    if (preparedData === null) {
-        prepareUserData()
-    }
+const Teams = ( { user, preparedData }) => {
+    
     console.log(preparedData)
+    
+    
+   
+    
     
 
     return (
         <>
             <div>
-                <h3>This is the teams component</h3>
-                {/* <p>{preparedData._id}</p> */}
+                <h3>Teams</h3>
+                <div>
+                    <ul>
+                        {preparedData ? preparedData.teams.map((team) => {
+                           return <li key={team._id}>
+                            <Link to={`/teams/${team._id}`}>{team.teamName}</Link></li>
+                        }): ""}
+                    </ul>
+                </div>
+                <div>
+                    
+                </div>
             </div>
             
         </>

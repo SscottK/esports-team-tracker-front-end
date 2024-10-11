@@ -78,6 +78,46 @@ const getUserData = async (userProp) => {
 
 }
 
+const getGames = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${BACKEND_URL}/games`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        const json = await res.json()
+        const games = json
+        console.log(json, games)
+        return games
+    } catch (error) {
+        throw error
+    }
+}
+
+const createTime = async (formData) => {
+    try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${BACKEND_URL}/times/addtime`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const json = await res.json();
+
+        if (json.error) {
+            throw new Error(json.error)
+        }
+        return json;
+    } catch (error) {
+        throw error
+    }
+}
+
 const signOut = () => {
     localStorage.removeItem('token')
 }
@@ -89,4 +129,6 @@ export {
     getUser,
     signOut,
     getUserData,
+    getGames,
+    createTime
 };
