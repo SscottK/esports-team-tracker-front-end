@@ -118,6 +118,30 @@ const createTime = async (formData) => {
     }
 }
 
+const getTeam = async (teamId) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(`${BACKEND_URL}/teams/${teamId}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',               
+                'Authorization': `Bearer ${token}`
+            }
+
+        })
+        const json = await res.json()
+        
+        if (json.error) {
+            throw new Error(json.error)
+        }
+        const team = json.team
+        
+        return team
+        
+    } catch (error) {
+        throw error
+    }
+}
+
 const signOut = () => {
     localStorage.removeItem('token')
 }
@@ -130,5 +154,6 @@ export {
     signOut,
     getUserData,
     getGames,
-    createTime
+    createTime,
+    getTeam,
 };

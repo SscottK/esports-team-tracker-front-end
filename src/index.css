@@ -66,3 +66,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.container 
+{
+  display: flex;
+  border: 1px solid red;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid blue;
+
+}
