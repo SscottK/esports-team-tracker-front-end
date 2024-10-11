@@ -73,9 +73,13 @@ button:focus-visible {
   border: 1px solid red;
 }
 
-.time {
+.time  {
   display: flex;
   flex-direction: column;
   border: 2px solid blue;
 
+}
+
+.nameTable {
+  border: 2px solid blue;
 }
