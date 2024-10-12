@@ -8,6 +8,7 @@ import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from '../src/services/authServices'
 import BottomNav from './components/NavBar/BottomNav';
 import Team from './components/Team/Team';
+import EditTeam from './components/Team/EditTeam';
 
 
 const App = () => {
@@ -48,6 +49,8 @@ const App = () => {
         <Route path="/signin" element={<SigninForm setUser={setUser} />} />
         <Route path="/teams/:teamId" element={<Team user={user} />} />
         <Route path="/times/:userId/" element={<h1>User times page</h1>} />
+        <Route path="/teams/:teamId/edit" element={<EditTeam user={user} />} />
+
       </Routes>
       <BottomNav user={user} />
     </>

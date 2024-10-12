@@ -52,7 +52,7 @@ const SignupForm = (props) => {
                 <div>
                     <label htmlFor="password">Password</label>
                     <input 
-                        type="text" 
+                        type="password" 
                         id="password"
                         name="password"
                         value={password}
@@ -62,7 +62,7 @@ const SignupForm = (props) => {
                 <div>
                     <label htmlFor="passwordConf">Confirm Password</label>
                     <input 
-                        type="text" 
+                        type="password" 
                         id="passwordConf"
                         name="passwordConf"
                         value={passwordConf}

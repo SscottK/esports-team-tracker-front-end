@@ -1,76 +1,66 @@
 import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
+import * as authService from '../../services/authServices'
 
-const TeamGrid = ({ user, team, gameId }) => {
+const TeamGrid = ({ user, teamId, gameId, currentGameData }) => {
     const [member, setMember] = useState(null)
     const [game, setGame] = useState(null)
+    // const [gameData, setGameData] = useState(null)
     
-    console.log(member)
-    // useEffect(() => {
-    //     const prepareMember = () => {
-    //         setMember(team.members[1]) 
-    //     }
-    //    if (user) prepareMember()
-    //     // console.log(member.trackedTimes)
-    // }, [user])
+    
+    useEffect(() => {
+        
+          const prepareGameData = async () => {
+            setGame(currentGameData)
+        }
+       if (currentGameData) {prepareGameData()}
+        
+    }, [])
+
     // if (game) {
     //     const foundMember = team.members.find((member) => {
     //         return game._id === event.target.value
             
     //     })
+    //   }
     
+    console.log(game)
     
-    return (
-        <>
-            <h1>This is the team grid</h1>
-            {/* {team ? member.trackedTimes.map((time) => {
-                        return <div key={time._id}className="time">{time}</div>
-                    }) : ''} */}
-            <Table striped bordered hover responsive>
-      <thead>
-        <tr >
-            <th>Track Name</th>
-        {team ? team.members.map((member) => {                    
-                    return <th key={member._id} className="nameTable">{member.username}</th>
-                    }) : ''
-                    }
-          </tr>
-      </thead>
-      <tbody>
-        <tr>
-            <td>1</td>
-          <tc>
-          
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          </tc>
-        
+    // if (currentGameData) {
+    //   let headerSet = (<th>Track Name</th>);
+    // for(let i=0; i<currentGameData.userData.length; i++){
+    //     headerSet += (<th>{currentGameData.userData[i]['name']}</th>);
+    // }
 
-        </tr>
-        <tr>
-        
-          <td>2</td>
-          <td></td>
-          <tc>
-          <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>          
-          </tr></tc>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-      
-    </Table>
-        </>
-        
-        
-    )
+    // let dataSet;
+    // for(trackName in currentGameData.trackata){
+
+    //     let dataRow = (<td>{trackName}</td>);
+
+    //     for(let q=0; q<currentGameData.userdata.length;q++){
+    //         let userId = currentGameData.userdata[q]['id'];
+
+    //         dataRow += (<td>{currentGameData.trackData["GoldenLoop"]["userid1"]}</td>);
+    //     }
+
+    //     dataSet += (<tr>{dataRow}</tr>)
+    // }
+    
+    // const userData = currentGameData.userData 
+    console.log(game)
+  
+    return (
+      <table>
+        <thead>
+            {/* <tr>{currentGameData ? headerSet : ''}</tr> */}
+        </thead>
+        <tbody>
+            {/* {currentGameData ? dataSet : ''} */}
+        </tbody>
+      </table>
+    );
+  //}
+    
 };
 
 export default TeamGrid
