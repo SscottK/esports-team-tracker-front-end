@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import TeamGrid from "./TeamGrid";
 
 
+
 const Team = ({ user }) => {
     const [gameId, setGameId] = useState(null)
     const [currentGame, setCurrentGame] = useState(null)
@@ -43,21 +44,15 @@ const Team = ({ user }) => {
         //call service to pass to state to team grid
         const currentGameData =  await authService.getTimesByTeamAndGame(gameId, teamId)
         setGameData(currentGameData)
-        
-        
-        
         setCurrentGame(game)               
         setGameId(gameId)
-        
-        
-        
-        
     }
     
     console.log(isCoach)
     console.log(coaches)
     return (
         <>
+            
             <h1>Current Game: { currentGame ? currentGame : 'Select a game to see team times!'
             }</h1>
             <div>
@@ -69,15 +64,15 @@ const Team = ({ user }) => {
                 }
                 </h3>
                 Games:
-                <ul>
-                     
-                    { team ? team.games.map((game) => {
-                        
-                        
-                        return <li key={game._id} value={game.gameName}><Link  onClick={()=>handleGameChange(game._id, game.gameName)}>{game.gameName}</Link></li>
-                    }) : '' 
-                    }
-                </ul>
+                <div>
+                    <ul>
+                        { team ? team.games.map((game) => {
+                            return <li key={game._id} value={game.gameName}><Link  
+                            onClick={()=>handleGameChange(game._id, game.gameName)}>{game.gameName}</   Link></li>
+                        }) : '' 
+                        }
+                    </ul>
+                </div>
             </div>            
             <div>
                 <TeamGrid user={user} teamId={teamId} gameId={gameId} currentGameData={gameData}/>
@@ -86,7 +81,7 @@ const Team = ({ user }) => {
                 {/* show edit team button  if user is in coaches array*/}
                 {isCoach && 
                     
-                    <Link to={`/teams/${team._id}/edit`}><button>Edit Team</button></Link>
+                <Link to={`/teams/${team._id}/edit`}><button>Edit Team</button></Link>
              }
             </div>
             

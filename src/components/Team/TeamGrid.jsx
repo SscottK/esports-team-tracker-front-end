@@ -2,64 +2,68 @@ import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import * as authService from '../../services/authServices'
 
-const TeamGrid = ({ user, teamId, gameId, currentGameData }) => {
+const TeamGrid = ({ currentGameData }) => {
     const [member, setMember] = useState(null)
     const [game, setGame] = useState(null)
     // const [gameData, setGameData] = useState(null)
     
-    
+    const [userdata, setUserdata] = useState([])
+    const [trackData, setTrackData] = useState({})
     useEffect(() => {
         
           const prepareGameData = async () => {
+            console.log('working')
             setGame(currentGameData)
+            setUserdata(currentGameData.userdata)
+            setTrackData(currentGameData.trackData)
         }
        if (currentGameData) {prepareGameData()}
         
-    }, [])
+    }, [currentGameData])
 
-    // if (game) {
-    //     const foundMember = team.members.find((member) => {
-    //         return game._id === event.target.value
-            
-    //     })
-    //   }
+    
     
     console.log(game)
+    console.log(userdata)
+    console.log(currentGameData)
+    let headerSet = [];
+    let dataSet = [];
+    if (userdata  && trackData) {
+      headerSet.push(<th>Track Name</th>);
+    for(let i=0; i<userdata.length; i++){
+        headerSet.push(<th>{userdata[i]['name']}</th>);
+    }
+
     
-    // if (currentGameData) {
-    //   let headerSet = (<th>Track Name</th>);
-    // for(let i=0; i<currentGameData.userData.length; i++){
-    //     headerSet += (<th>{currentGameData.userData[i]['name']}</th>);
-    // }
+    for(const trackName in trackData){
+      let dataRow = [];
+        dataRow.push(<td>{trackName}</td>);
 
-    // let dataSet;
-    // for(trackName in currentGameData.trackata){
+        for(let q=0; q<userdata.length;q++){
+            let userId = userdata[q]['id'];
 
-    //     let dataRow = (<td>{trackName}</td>);
+            dataRow.push(<td>{trackData[trackName][userId]}</td>);
+        }
 
-    //     for(let q=0; q<currentGameData.userdata.length;q++){
-    //         let userId = currentGameData.userdata[q]['id'];
-
-    //         dataRow += (<td>{currentGameData.trackData["GoldenLoop"]["userid1"]}</td>);
-    //     }
-
-    //     dataSet += (<tr>{dataRow}</tr>)
-    // }
+        dataSet.push(<tr>{dataRow}</tr>)
+    }
+  }
     
-    // const userData = currentGameData.userData 
-    console.log(game)
+    
   
     return (
-      <table>
+      <Table>
         <thead>
-            {/* <tr>{currentGameData ? headerSet : ''}</tr> */}
+            <tr>
+              {headerSet}
+            </tr>
         </thead>
         <tbody>
-            {/* {currentGameData ? dataSet : ''} */}
+          {dataSet}
         </tbody>
-      </table>
+      </Table>
     );
-  //}
+  
     
 };
 

@@ -9,6 +9,10 @@ import * as authService from '../src/services/authServices'
 import BottomNav from './components/NavBar/BottomNav';
 import Team from './components/Team/Team';
 import EditTeam from './components/Team/EditTeam';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 
 const App = () => {
@@ -38,21 +42,29 @@ const App = () => {
 
   return (
     <>
-      <NavBar user={user} handleSignout={handleSignout}/>
-      <Routes>
-        { user ? (
-          <Route path="/" element={<Dashboard user={user} preparedData={preparedData}/>} />
-        ) : (
-          <Route path="/" element={<Landing />} />
-        )}
-        <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
-        <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-        <Route path="/teams/:teamId" element={<Team user={user} />} />
-        <Route path="/times/:userId/" element={<h1>User times page</h1>} />
-        <Route path="/teams/:teamId/edit" element={<EditTeam user={user} />} />
+      <Container fluid>
+        <Row>
+          <Col>
+            <NavBar user={user} handleSignout={handleSignout}/>
+          </Col>
+        </Row>
+        <Row>
+          <Routes>
+            { user ? (
+              <Route path="/" element={<Dashboard user={user} preparedData={preparedData}/>} />
+            ) : (
+              <Route path="/" element={<Landing />} />
+            )}
+            <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
+            <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+            <Route path="/teams/:teamId" element={<Team user={user} />} />
+            <Route path="/times/:userId/" element={<h1>User times page</h1>} />
+            <Route path="/teams/:teamId/edit" element={<EditTeam user={user} />} />
 
-      </Routes>
-      <BottomNav user={user} />
+          </Routes>
+        </Row>
+        <BottomNav user={user} />
+      </Container>
     </>
   )
 }

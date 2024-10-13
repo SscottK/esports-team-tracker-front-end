@@ -48,7 +48,7 @@ const TimeForm = ({ user }) => {
         try {
             await authService.createTime(formData)
             
-            navigate(`/times/${user._id}`)
+            navigate(`/`)
         } catch (error) {
             setMessage(error.message)
         }

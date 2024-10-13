@@ -166,6 +166,27 @@ const getTimesByTeamAndGame = async (gameId, teamId) => {
     }
 }
 
+const editTeam = async (teamId, formData) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(`${BACKEND_URL}/teams/${teamId}/edit`, {
+            method: 'PUT',
+            headers: {
+               'Content-Type': 'application/json',             
+                'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify(formData)
+        })
+        const json = await res.json()
+        if (json.error) {
+            throw new Error(json.error)
+        }
+        return json
+    } catch (error) {
+        throw error
+    }
+}
+
 const signOut = () => {
     localStorage.removeItem('token')
 }
@@ -181,4 +202,5 @@ export {
     createTime,
     getTeam,
     getTimesByTeamAndGame,
+    editTeam,
 };

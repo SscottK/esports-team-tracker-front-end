@@ -1,3 +1,4 @@
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -67,19 +68,3 @@ button:focus-visible {
   }
 }
 
-.container 
-{
-  display: flex;
-  border: 1px solid red;
-}
-
-.time  {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid blue;
-
-}
-
-.nameTable {
-  border: 2px solid blue;
-}

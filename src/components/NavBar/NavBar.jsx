@@ -1,18 +1,29 @@
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const NavBar = ({ user, handleSignout }) => {
     return (
         <>  
             { user ?( 
-            <nav>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
-                </ul>
-            </nav> 
+            <Navbar expand="lg" className="bg-body-tertiary">
+              <Container fluid>
+                <Navbar.Brand href="/">Esports Team Tracker</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto">
+                    {/* <Nav.Link href="/">Home</Nav.Link>  need for later*/}
+                    <Nav.Link href="/" onClick={handleSignout}>Sign Out</Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar> 
             ) : (
                 <></>
-            )}           
+            )}
+                      
         </>
             
     )

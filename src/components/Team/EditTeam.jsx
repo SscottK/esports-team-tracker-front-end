@@ -1,57 +1,140 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as authService from '../../services/authServices'
-import { ListGroup } from "react-bootstrap";
+import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
 
+
+//needs to happen
+/*when form is submited I need it to change the name and add or remove members and games
+handleChange**
+handleSubmit
+
+
+*/ 
+
 const EditTeam = () => {
+    const navigate = useNavigate()
     const { teamId } = useParams('teamId')
     const [team, setTeam] = useState(null)
+    const [formData, setFormData] = useState({
+        teamName: '',
+        members: [],
+        games: []
+    })
+    
+        
+    
     useEffect(() => {
         const getTeam = async () => {
             console.log("get team")
             const foundTeam = await authService.getTeam(teamId)
-            
             console.log('team' , foundTeam)
             setTeam(foundTeam)
-            
-            
             console.log(team)
-           
+            
+            
+                
+            
+        }
+
             
         
-    }
+    
     if (teamId) getTeam();
-         
+        
      }, [teamId])
+    
+    
+    const handleChange = (event) => {
+        console.log(event.target.name)
+        console.log(event.target.value, event.target.checked)
+        // if (event.target.value !in formData.members)
+        setFormData({...formData, [event.target.name]: event.target.value})
+        console.log(formData)
+        
+    };
+     
+    const handleCheckboxChange = (event) => {
+        const key = event.target.name;
+        const existingArray = formData[key];
+        console.log('Checked', event.target.checked)
+        
+        
+        
 
-     //handleChange
-     //
-     //
-     //
-     //
+        if (event.target.checked && existingArray.indexOf(event.target.value) == -1) {
+            existingArray.push(event.target.value)
+        } else if (!event.target.checked && existingArray.indexOf(event.target.value) >= 0) {
+            existingArray.splice(existingArray.indexOf(event.target.value), 1)
+        }
+        setFormData({...formData, [event.target.name]: existingArray})
+}     
+    const handleSave = async (event) => {
+        
+        try {
+            console.log(formData)
+            event.preventDefault();
+            await authService.editTeam(teamId, formData)
+            navigate(`/teams/${teamId}`)
+        } catch (error) {
+            throw error
+        }
+    }
+    const handleCheckAll = () => {
+        const allChecked = checkboxes.every(checkbox => checkbox.checked);
+        setCheckboxes(prevCheckboxes => prevCheckboxes.map(checkbox => 
+          ({ ...checkbox, checked: !allChecked })
+        ));
+      };
+    
+     
     
     return (
         <>
-        <p>To remove team members or games please select the box and then press save</p>
-        <form>
+        <p>How to edit your team:</p>
+        <ListGroup as="ul">
+            <ListGroup.Item as="li">A check box must be checked to keep that data.</ListGroup.Item>
+            <ListGroup.Item as="li">ALL BOXES START UNCHECKED</ListGroup.Item>
+        </ListGroup>
+        <form onSubmit={handleSave}>
             <div>
-            <ListGroup as="ul">
+                <label htmlFor="teamName">{team ? 'New Team Name': "Hmm seems to be no name for this team"}</label>
+                <input type="text" name="teamName" value={formData.teamName} onChange={handleChange}/>
+            </div>
+            <div>
+                <label htmlFor="Members">Members</label>
+                <div>
+              <label>
+                <input type="checkbox"
+                       checked={checkboxes.every(checkbox => checkbox.checked)}
+                       onChange={handleCheckAll} 
+                /> Check All
+              </label>
+              
+            </div>
+                <ListGroup as="ul">
                     {team ? team.members.map((member) => {
-                       return  <ListGroup.Item key={member._id}>{member.username} <input type="checkbox" name="removeMe" id="removeMe" /></ListGroup.Item>
+                       return  <ListGroup.Item action variant="primary" key={member._id}><label htmlFor={"members" + member._id}>{member.username}</label> <input type="checkbox" name="members" id={"members" + member._id} value={member._id} onChange={handleCheckboxChange} /></ListGroup.Item>
                     }) : ''}
                 </ListGroup>
+                <div>
+                    
+                </div>
             </div>
             <div>
-            <ListGroup>
-                {team ? team.games.map((game) => {
-                       return  <ListGroup.Item key={game._id}>{game.gameName} <input type="checkbox" name="removeMe" id="removeMe" /></ListGroup.Item>
-                    }) : ''}
+                <label htmlFor="games">Games</label>
+                <ListGroup id="games">                
+                    {team ? team.games.map((game) => {
+                       return  <ListGroup.Item action variant="primary"key={game._id}><label htmlFor={"games" + game._id}>{game.gameName}</label> <input type="checkbox" name="games" id={"games" + game._id} value={game._id} onChange={handleCheckboxChange} />
+                </ListGroup.Item>
+                }) : ''}
                 </ListGroup>
             </div>
+
             <div>
-                <Button variant="primary">Save</Button>{' '}
+                <Button type="submit" variant="primary">Save</Button>{' '}
             </div>
         </form>
         </>
