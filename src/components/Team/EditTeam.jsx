@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as authService from '../../services/authServices'
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import { Row } from "react-bootstrap";
+
 
 
 
@@ -26,6 +29,7 @@ const EditTeam = () => {
     
         
     
+
     useEffect(() => {
         const getTeam = async () => {
             console.log("get team")
@@ -82,12 +86,7 @@ const EditTeam = () => {
             throw error
         }
     }
-    const handleCheckAll = () => {
-        const allChecked = checkboxes.every(checkbox => checkbox.checked);
-        setCheckboxes(prevCheckboxes => prevCheckboxes.map(checkbox => 
-          ({ ...checkbox, checked: !allChecked })
-        ));
-      };
+   
     
      
     
@@ -105,38 +104,35 @@ const EditTeam = () => {
             </div>
             <div>
                 <label htmlFor="Members">Members</label>
-                <div>
-              <label>
-                <input type="checkbox"
-                       checked={checkboxes.every(checkbox => checkbox.checked)}
-                       onChange={handleCheckAll} 
-                /> Check All
-              </label>
-              
+                <div>             
             </div>
                 <ListGroup as="ul">
                     {team ? team.members.map((member) => {
-                       return  <ListGroup.Item action variant="primary" key={member._id}><label htmlFor={"members" + member._id}>{member.username}</label> <input type="checkbox" name="members" id={"members" + member._id} value={member._id} onChange={handleCheckboxChange} /></ListGroup.Item>
+                       return  <ListGroup.Item   variant="info" key={member._id}><label htmlFor={"members" + member._id}>{member.username}</label> <input type="checkbox" name="members" id={"members" + member._id} value={member._id} onChange={handleCheckboxChange} /></ListGroup.Item>
                     }) : ''}
                 </ListGroup>
                 <div>
-                    
+                <Col><Button href={`/teams/${teamId}/addmember`} variant="primary">Add Member to Team</Button>{' '}</Col> 
                 </div>
             </div>
             <div>
                 <label htmlFor="games">Games</label>
                 <ListGroup id="games">                
                     {team ? team.games.map((game) => {
-                       return  <ListGroup.Item action variant="primary"key={game._id}><label htmlFor={"games" + game._id}>{game.gameName}</label> <input type="checkbox" name="games" id={"games" + game._id} value={game._id} onChange={handleCheckboxChange} />
+                       return  <ListGroup.Item   variant="info"key={game._id}><label htmlFor={"games" + game._id}>{game.gameName}</label> <input type="checkbox" name="games" id={"games" + game._id} value={game._id} onChange={handleCheckboxChange} />
                 </ListGroup.Item>
                 }) : ''}
                 </ListGroup>
             </div>
-
+            <Col><Button href={`/games/${teamId}/addgame`} variant="primary">Add Game</Button>{' '}</Col>
             <div>
                 <Button type="submit" variant="primary">Save</Button>{' '}
-            </div>
+            </div>            
         </form>
+        <Row>
+        
+        
+        </Row>
         </>
     )
 

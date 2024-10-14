@@ -29,7 +29,7 @@ const TeamGrid = ({ currentGameData }) => {
     let headerSet = [];
     let dataSet = [];
     if (userdata  && trackData) {
-      headerSet.push(<th>Track Name</th>);
+      // headerSet.push(<th>Track Name</th>);
     for(let i=0; i<userdata.length; i++){
         headerSet.push(<th>{userdata[i]['name']}</th>);
     }
@@ -55,6 +55,7 @@ const TeamGrid = ({ currentGameData }) => {
       <Table>
         <thead>
             <tr>
+              {game ? <th>Track Name</th> : ''}
               {headerSet}
             </tr>
         </thead>

@@ -12,6 +12,8 @@ import EditTeam from './components/Team/EditTeam';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import AddGame from './components/Game/AddGame'
+import AddMember from './components/Member/AddMember'
 
 
 
@@ -60,6 +62,8 @@ const App = () => {
             <Route path="/teams/:teamId" element={<Team user={user} />} />
             <Route path="/times/:userId/" element={<h1>User times page</h1>} />
             <Route path="/teams/:teamId/edit" element={<EditTeam user={user} />} />
+            <Route path="/games/:teamId/addgame" element={<AddGame />} />
+            <Route path="/teams/:teamId/addmember" element={<AddMember />} />
 
           </Routes>
         </Row>

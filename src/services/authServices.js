@@ -129,7 +129,7 @@ const getTeam = async (teamId) => {
 
         })
         const json = await res.json()
-        
+            
         if (json.error) {
             throw new Error(json.error)
         }
@@ -187,6 +187,73 @@ const editTeam = async (teamId, formData) => {
     }
 }
 
+const addGame = async (teamId, formData) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(`${BACKEND_URL}/games/${teamId}/addgame`, {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',             
+                'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify(formData)
+        })
+        const json = await res.json()
+        if (json.error) {
+            throw new Error(json.error)
+        }
+        return json
+    } catch (error) {
+        throw error
+    }
+}
+
+const getAllUsers = async () => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(`${BACKEND_URL}/users`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',               
+                'Authorization': `Bearer ${token}`
+            }
+
+        })
+        const json = await res.json()
+            
+        if (json.error) {
+            throw new Error(json.error)
+        }
+        
+        
+        
+        return json
+        
+    } catch (error) {
+        throw error
+    }
+}
+
+const addMember = async (teamId, formData) => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(`${BACKEND_URL}/teams/${teamId}/edit`, {
+            method: 'PUT',
+            headers: {
+               'Content-Type': 'application/json',             
+                'Authorization': `Bearer ${token}` 
+            },
+            body: JSON.stringify(formData)
+        })
+        const json = await res.json()
+        if (json.error) {
+            throw new Error(json.error)
+        }
+        return json
+    } catch (error) {
+        throw error
+    }
+}
+
 const signOut = () => {
     localStorage.removeItem('token')
 }
@@ -203,4 +270,6 @@ export {
     getTeam,
     getTimesByTeamAndGame,
     editTeam,
+    addGame,
+    getAllUsers,
 };
