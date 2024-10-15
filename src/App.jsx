@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AddGame from './components/Game/AddGame'
 import AddMember from './components/Member/AddMember'
+import UserEdit from './components/User/UserEdit';
 
 
 
@@ -59,12 +60,11 @@ const App = () => {
             )}
             <Route path="/signup" element={<SignupForm setUser={setUser}/>} />
             <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-            <Route path="/teams/:teamId" element={<Team user={user} />} />
-            <Route path="/times/:userId/" element={<h1>User times page</h1>} />
+            <Route path="/teams/:teamId" element={<Team user={user} />} />           
             <Route path="/teams/:teamId/edit" element={<EditTeam user={user} />} />
             <Route path="/games/:teamId/addgame" element={<AddGame />} />
             <Route path="/teams/:teamId/addmember" element={<AddMember />} />
-
+            <Route path="/users/:userId/edit" element={<UserEdit />} />
           </Routes>
         </Row>
         <BottomNav user={user} />

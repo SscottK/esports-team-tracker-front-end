@@ -233,22 +233,27 @@ const getAllUsers = async () => {
     }
 }
 
-const addMember = async (teamId, formData) => {
+
+const getOneUser = async (userId) => {
     try {
         const token = localStorage.getItem('token')
-        const res = await fetch(`${BACKEND_URL}/teams/${teamId}/edit`, {
-            method: 'PUT',
-            headers: {
-               'Content-Type': 'application/json',             
-                'Authorization': `Bearer ${token}` 
-            },
-            body: JSON.stringify(formData)
+        const res = await fetch(`${BACKEND_URL}/users/${userId}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',               
+                'Authorization': `Bearer ${token}`
+            }
+
         })
         const json = await res.json()
+            
         if (json.error) {
             throw new Error(json.error)
         }
-        return json
+        
+        const user = json.user
+        
+        return user
+        
     } catch (error) {
         throw error
     }
@@ -271,5 +276,6 @@ export {
     getTimesByTeamAndGame,
     editTeam,
     addGame,
-    getAllUsers,
+    getAllUsers,    
+    getOneUser,
 };

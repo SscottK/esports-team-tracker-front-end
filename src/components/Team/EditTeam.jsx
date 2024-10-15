@@ -58,6 +58,7 @@ const EditTeam = () => {
         setFormData({...formData, [event.target.name]: event.target.value})
         console.log(formData)
         
+        
     };
      
     const handleCheckboxChange = (event) => {
@@ -78,7 +79,7 @@ const EditTeam = () => {
     const handleSave = async (event) => {
         
         try {
-            console.log(formData)
+            
             event.preventDefault();
             await authService.editTeam(teamId, formData)
             navigate(`/teams/${teamId}`)
@@ -99,8 +100,8 @@ const EditTeam = () => {
         </ListGroup>
         <form onSubmit={handleSave}>
             <div>
-                <label htmlFor="teamName">{team ? 'New Team Name': "Hmm seems to be no name for this team"}</label>
-                <input type="text" name="teamName" value={formData.teamName} onChange={handleChange}/>
+                <label htmlFor="teamName">New Team Name</label>
+                <input type="text" name="teamName" defaultValue={team? team.teamName : ''} onChange={handleChange}/>
             </div>
             <div>
                 <label htmlFor="Members">Members</label>

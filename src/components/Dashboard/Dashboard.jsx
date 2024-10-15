@@ -2,6 +2,7 @@ import Teams from "../Teams/Teams";
 import TimeForm from "../TimeForm/TimeForm"
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 
 
 const Dashboard = ({ user, preparedData}) => {
@@ -19,7 +20,11 @@ const Dashboard = ({ user, preparedData}) => {
                     <TimeForm user={user} />
                 </Col>
             </Row>
+            <Col>
+             <Button href={`/users/${user._id}/edit`}>Edit User</Button>
+            </Col>
         </Col>
+
     )
 };
 
