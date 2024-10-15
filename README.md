@@ -1,7 +1,8 @@
+![Esports Team Tracker logo](/src/assets/esttLogo.png)
+
+
+
 # Esports Team Tracker
-
-<!-- ESTT logo -->
-
 
 
 
