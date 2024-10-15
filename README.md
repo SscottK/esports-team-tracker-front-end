@@ -1,8 +1,26 @@
-# React + Vite
+# Esports Team Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- ESTT logo -->
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+## About this app
+This app is designed for Esports coaches so that they can track their teams progress in various games. When you sign in you can create teams, add games with levels, add your times to your account and much more.
+
+I built this app as a proof of concept for a buddy who runs Esports teams. He currently uses google sheets however it is limited in its functionality and can really only show his team their times. My aim is to implement a calender sytem to help with scheduling so that they can have all their info in one place. 
+
+
+## Getting Started
+<!-- link to deployed app -->
+
+
+
+## Technologies used
+- ### Front End
+<!-- react -->
+<!-- react bootstrap -->
+<!-- Mongoose -->
+<!-- Javascript -->
+<!-- React Router Dom -->
+<!--  -->
