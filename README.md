@@ -24,6 +24,8 @@ I built this app as a proof of concept for a buddy who runs Esports teams. He cu
 &emsp;&emsp;&emsp;- React bootstrap
 &emsp;&emsp;&emsp;- React Router Dom 
 &emsp;&emsp;&emsp;- Javascript
+&emsp;&emsp;&emsp;- Aseprite
+
 
 
 ###### &emsp; Back End
