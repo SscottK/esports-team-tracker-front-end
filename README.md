@@ -36,7 +36,7 @@ I built this app as a proof of concept for a buddy who runs Esports teams. He cu
 - bcryptJs
 - cors
 
-##### &emsp; Database
+###### &emsp; Database
 - MongoDb
 
 ## Future Plans
