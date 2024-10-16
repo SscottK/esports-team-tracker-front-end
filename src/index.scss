@@ -1,0 +1,42 @@
+#root {
+  color: purple ;
+  background-color: darkgray;
+  height: 100%;
+}
+
+.link {
+  color: purple;
+  text-decoration: none;
+}
+
+
+
+ .userEditButton {
+  display: flex;
+  justify-content: space-between;
+ }
+ 
+ .app {
+  width: 100vw; 
+  height: 100vh;
+ }
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.landingBlurb {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.signin, .signup {
+  display: flex;
+  flex-direction: column;
+  max-width: min-content;
+}
+.signinButtons, signupButtons {
+  display: flex;
+}

@@ -45,7 +45,8 @@ const App = () => {
 
   return (
     <>
-      <Container fluid>
+    <div className='app'>
+      <Container fluid >
         <Row>
           <Col>
             <NavBar user={user} handleSignout={handleSignout}/>
@@ -69,6 +70,7 @@ const App = () => {
         </Row>
         <BottomNav user={user} />
       </Container>
+      </div>
     </>
   )
 }
