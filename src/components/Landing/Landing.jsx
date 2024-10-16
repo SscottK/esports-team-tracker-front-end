@@ -7,7 +7,7 @@ const Landing = () => {
     <Row>
       <Row>
         <div className="img">
-          <Image src="/src/assets/esttLogo.png" fluid />
+          <Image src="/src/assets/esttLogo.png" alt="Esports team tracker logo"fluid />
         </div>
       </Row>
 
