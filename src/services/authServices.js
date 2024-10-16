@@ -89,7 +89,7 @@ const getGames = async () => {
         })
         const json = await res.json()
         const games = json
-        console.log(json, games)
+        
         return games
     } catch (error) {
         throw error
@@ -145,7 +145,7 @@ const getTeam = async (teamId) => {
 //get times by team and game
 const getTimesByTeamAndGame = async (gameId, teamId) => {
     try {
-        console.log('teamId', teamId, 'gameId', gameId)        
+           
         const token = localStorage.getItem('token')
         const res = await fetch(`${BACKEND_URL}/teams/gettimes/${teamId}/${gameId}`, {
             method: 'GET',

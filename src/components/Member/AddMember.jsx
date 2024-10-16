@@ -35,7 +35,7 @@ const AddMember = () => {
         //if current user is not in team.members
 
         const present = team.members.find(({ _id }) => _id === user._id);
-        console.log("present", present);
+
         if (!present) {
           //add them to availablePlayers
           availablePlayers.push(user);
@@ -47,7 +47,7 @@ const AddMember = () => {
     };
     if (teamId) settingStates();
   }, [teamId]);
-  console.log(users);
+
   const handleChange = (event) => {
     //get selected member
     setFormData({ member: event.target.value });
@@ -74,7 +74,7 @@ const AddMember = () => {
       setUsers(newUsers);
       //get the current team
       const team = await authService.getTeam(teamId);
-      console.log("team", team);
+
       //create a reaplacemnent team obj
       const newTeam = team;
       //update the members

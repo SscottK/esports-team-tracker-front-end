@@ -28,7 +28,7 @@ const App = () => {
     useEffect(() => {
     const prepareUserData = async () => {
         const userData = await authService.getUserData(user)
-        console.log(userData);
+        
         
         setPreparedData(userData)
         

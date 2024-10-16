@@ -11,7 +11,6 @@ const TeamGrid = ({ currentGameData }) => {
   const [trackData, setTrackData] = useState({});
   useEffect(() => {
     const prepareGameData = async () => {
-      console.log("working");
       setGame(currentGameData);
       setUserdata(currentGameData.userdata);
       setTrackData(currentGameData.trackData);
@@ -21,9 +20,6 @@ const TeamGrid = ({ currentGameData }) => {
     }
   }, [currentGameData]);
 
-  console.log(game);
-  console.log(userdata);
-  console.log(currentGameData);
   let headerSet = [];
   let dataSet = [];
   if (userdata && trackData) {

@@ -27,28 +27,22 @@ const EditTeam = () => {
 
   useEffect(() => {
     const getTeam = async () => {
-      console.log("get team");
       const foundTeam = await authService.getTeam(teamId);
-      console.log("team", foundTeam);
+
       setTeam(foundTeam);
-      console.log(team);
     };
 
     if (teamId) getTeam();
   }, [teamId]);
 
   const handleChange = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value, event.target.checked);
     // if (event.target.value !in formData.members)
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    console.log(formData);
   };
 
   const handleCheckboxChange = (event) => {
     const key = event.target.name;
     const existingArray = formData[key];
-    console.log("Checked", event.target.checked);
 
     if (
       event.target.checked &&

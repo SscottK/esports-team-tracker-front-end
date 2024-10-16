@@ -21,7 +21,6 @@ const TimeForm = ({ user }) => {
   useEffect(() => {
     const getGames = async () => {
       const games = await authService.getGames();
-      console.log(games);
 
       setGames(games);
     };
@@ -29,8 +28,6 @@ const TimeForm = ({ user }) => {
   }, [user]);
 
   const handleChange = (event) => {
-    console.log(event.target);
-
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if (event.target.id === "game") {
       const foundGame = games.find((game) => {
@@ -44,7 +41,6 @@ const TimeForm = ({ user }) => {
     // event.preventDefault();
     try {
       await authService.createTime(formData);
-      
 
       navigate(`/`);
     } catch (error) {

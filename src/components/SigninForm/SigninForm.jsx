@@ -23,7 +23,7 @@ const SigninForm = (props) => {
     try {
       const user = await authService.signin(formData);
       props.setUser(user);
-      console.log(user);
+      
       navigate("/");
     } catch (error) {
       setMessage(error.message);

@@ -18,22 +18,18 @@ const Team = ({ user }) => {
 
   useEffect(() => {
     const getTeam = async () => {
-      console.log("get team");
       const foundTeam = await authService.getTeam(teamId);
 
-      console.log("team", foundTeam);
       setTeam(foundTeam);
       setCoaches(foundTeam.coaches);
 
-      console.log(team);
       foundTeam.coaches.map((coach) => {
-        console.log("coach", user._id, coach._id);
         if (user._id === coach._id) {
           setIsCoach(true);
         }
       });
     };
-    console.log("user", user);
+
     if (user) getTeam();
   }, [user]);
 
@@ -48,8 +44,6 @@ const Team = ({ user }) => {
     setGameId(gameId);
   };
 
-  console.log(isCoach);
-  console.log(coaches);
   return (
     <>
       <h1>
